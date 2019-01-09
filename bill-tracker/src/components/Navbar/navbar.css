@@ -1,4 +1,9 @@
 /* Make all a elements/ link white */
-/* nav a {
+nav a {
     color: white;
-} */
+}
+
+nav a:hover {
+    color: green;
+    text-decoration: none;
+}
