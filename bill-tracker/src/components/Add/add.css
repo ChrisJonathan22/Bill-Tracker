@@ -1,18 +1,18 @@
 /* Add bills styles */
 #add h1 {
     padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 /* Form styles */
-#form-holder {
+/* #form-holder {
     border: 1px red solid;
     padding-top: 50px;
     width: 50%;
     margin: 0 auto;
-}
+} */
 
-label {
-    /* text-align: center; */
-    display: block;
-    text-align-last: center;
-  }
+
+input {
+    margin: 0 auto;
+}
