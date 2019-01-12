@@ -4,6 +4,21 @@ import './add.css';
 class Add extends Component {
     constructor() {
         super();
+        this.state = {
+            title: "",
+            amount: null,
+            date: ""
+        };
+        this.getData = this.getData.bind(this);
+    }
+
+
+    getData() {
+        this.setState({
+            title: document.getElementById('title').value,
+            amount: document.getElementById('amount').value,
+            date: document.getElementById('date').value
+        });
     }
 
     render() {
@@ -26,20 +41,20 @@ class Add extends Component {
                         <input type="submit" value="Submit" id="button"></input>
                     </form>
                 </section> */}
-                <form>
+                <form action="localhost:5000/add" method="post">
                     <fieldset>
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control col-sm-4" id="title" aria-describedby="title" autoComplete="off" placeholder="Enter title..."/>
+                        <div className="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" className="form-control col-sm-4" id="title" aria-describedby="title" autoComplete="off" placeholder="Enter title..."/>
 
-                    <label for="amount">Amount</label>
-                    <input type="number" class="form-control col-sm-4" id="amount" aria-describedby="amount" placeholder="Enter amount..."/>
+                            <label for="amount">Amount</label>
+                            <input type="number" className="form-control col-sm-4" id="amount" aria-describedby="amount" placeholder="Enter amount..."/>
             
-                    <label for="date">Date</label>
-                    <input type="date" class="form-control col-sm-4" id="date" aria-describedby="date" placeholder="Pick date..."/>
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                </fieldset>
+                            <label for="date">Date</label>
+                            <input type="date" className="form-control col-sm-4" id="date" aria-describedby="date" placeholder="Pick date..."/>
+                        </div>
+                        <input type="submit" className="btn btn-success" value="Submit" onClick={this.getData}/>
+                    </fieldset>
                 </form>
             </div>
         );
