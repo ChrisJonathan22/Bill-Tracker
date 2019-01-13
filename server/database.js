@@ -11,7 +11,7 @@ const connect = mongoose.connection;
 const billSchema = new mongoose.Schema({
     title: String,
     amount: Number,
-    data: String
+    date: String
 });
 
 // Create a model / collection.

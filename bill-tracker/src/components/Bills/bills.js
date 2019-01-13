@@ -9,7 +9,7 @@ class Bills extends Component {
     render() {
         return (
             <div>
-                <h1>View Bills!</h1>
+                <h1 id="bills-title">View Bills!</h1>
             </div>
         );
     }

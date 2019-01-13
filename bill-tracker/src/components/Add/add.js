@@ -9,17 +9,44 @@ class Add extends Component {
             amount: null,
             date: ""
         };
-        this.getData = this.getData.bind(this);
+        this.setData = this.setData.bind(this);
+        this.sendData = this.sendData.bind(this);
     }
 
-
-    getData() {
-        this.setState({
+    setData () {
+         // Give the state some new data depending on what the user has entered.
+         this.setState({
             title: document.getElementById('title').value,
             amount: document.getElementById('amount').value,
             date: document.getElementById('date').value
         });
     }
+
+    sendData() {
+        // Send the data
+            fetch('http://localhost:5000/add', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            // Turn the object to json
+            body: JSON.stringify({
+                title: this.state.title,
+                amount: this.state.amount,
+                date: this.state.date
+            })
+        })
+        .then((res) => {
+            // A message to let me know that the data has been successfully sent.
+            console.log('Data sent!');
+        })
+        .then((res) => {
+            console.log("This is isn't needed but I thought I'd try something.");
+        });
+    }
+
+
 
     render() {
         return (
@@ -27,33 +54,19 @@ class Add extends Component {
                 <section id="add">
                     <h1>Add Bills!</h1>
                 </section>
-                {/* <section id="form-holder">
-                    <form method ="POST" action="http://localhost:5000/add" enctype="multipart/form-data">
-                        <label for="title" class="label">Enter a title...</label>
-                        <input type="text" name="title" class="fields" placeholder="Please enter a title..." autocomplete="off" required/>
-                        <br/>
-                        <label for="amount" class="label">Enter an amount...</label>
-                        <input type="text" name="amount" class="fields" placeholder="Please enter an amount..." autocomplete="off" required/>
-                        <br/>
-                        <label for="date" class="label">Pick a date...</label>
-                        <input type="date" name="date" class="fields" placeholder="Please pick a date..."/>
-                        <br/>
-                        <input type="submit" value="Submit" id="button"></input>
-                    </form>
-                </section> */}
-                <form action="localhost:5000/add" method="post">
+                <form>
                     <fieldset>
                         <div className="form-group">
                             <label for="title">Title</label>
-                            <input type="text" className="form-control col-sm-4" id="title" aria-describedby="title" autoComplete="off" placeholder="Enter title..."/>
+                            <input type="text" className="form-control col-sm-4" id="title" aria-describedby="title" autoComplete="off" placeholder="Enter title..." required/>
 
                             <label for="amount">Amount</label>
-                            <input type="number" className="form-control col-sm-4" id="amount" aria-describedby="amount" placeholder="Enter amount..."/>
+                            <input type="number" className="form-control col-sm-4" id="amount" aria-describedby="amount" placeholder="Enter amount..." required/>
             
                             <label for="date">Date</label>
-                            <input type="date" className="form-control col-sm-4" id="date" aria-describedby="date" placeholder="Pick date..."/>
+                            <input type="date" className="form-control col-sm-4" id="date" aria-describedby="date" placeholder="Pick date..." required/>
                         </div>
-                        <input type="submit" className="btn btn-success" value="Submit" onClick={this.getData}/>
+                        <input type="submit" className="btn btn-success" value="Submit" onMouseEnter={this.setData} onClick={this.sendData}/>
                     </fieldset>
                 </form>
             </div>

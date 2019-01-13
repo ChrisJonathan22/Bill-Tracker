@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { connect } = require('./database');
-const { requires } = require('./database');
+const { bills } = require('./database');
 const port = 5000;
 
 // Create an express app.
@@ -33,12 +33,21 @@ connect.once('open', () => {
 
 // Creating a route for GET requests to localhost:5000/bills.
 app.get('/bills', (req, res) => {
-    res.json({message: "Router working."});
+    res.json({message: "Route working."});
+    console.log("/bills route visited!");
 });
 
 // Creating a route for POST requests to localhost:5000/add.
 app.post('/add', (req, res) => {
-    console.log(req.body.title);
+    console.log(req.body);
+    const bill = new bills({title: req.body.title, amount: req.body.amount, date: req.body.date});
+    bill.save((err, bills) => {
+        if(err) console.log(err);
+        else {
+            console.log("New bill successfully added...");
+        }
+    });
+    res.json({ message: "Data received!" });
 });
 
 
