@@ -4,6 +4,15 @@ import './bills.css';
 class Bills extends Component {
     constructor() {
         super();
+        this.state = {
+            bills: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/bills')
+        .then(res => res.json())
+        .then(data => this.setState({ bills: data.message }, () => console.log(data.message)));
     }
 
     render() {
