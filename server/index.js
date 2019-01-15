@@ -31,10 +31,15 @@ connect.once('open', () => {
     console.log('Database connection successful');
 });
 
-// Creating a route for GET requests to localhost:5000/bills.
+// Creating a route for GET requests to localhost:5000/bills which will return all bills found.
 app.get('/bills', (req, res) => {
-    res.json({message: "Route working."});
-    console.log("/bills route visited!");
+    bills.find((err, data) => {
+        if(err) console.log(err);
+        else {
+            res.json({bills: data});
+            console.log('Bills successfully found');
+        }
+    });
 });
 
 // Creating a route for POST requests to localhost:5000/add.
