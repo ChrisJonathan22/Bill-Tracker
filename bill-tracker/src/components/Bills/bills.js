@@ -6,8 +6,17 @@ class Bills extends Component {
     constructor() {
         super();
         this.state = {
-            bills: []
+            bills: [],
+            thisYear: [],
+            lastYear: [],
         }
+        this.getDate = this.getDate.bind(this);
+    }
+
+    getDate() {
+        this.state.bills.map((bill) => {
+            console.log(bill.date);
+        });
     }
 
     componentDidMount() {
@@ -16,31 +25,25 @@ class Bills extends Component {
         .then(data => this.setState({ bills: data.bills }, () => console.log(this.state.bills)));
     }
 
-    render() {
 
-        let ctx = document.getElementById("myChart").getContext('2d');
+
+    render() {
+        window.onload = () => {
+            let ctx = document.getElementById("myChart").getContext('2d');
                 let myChart = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
-                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                        labels: ["Last year", "This year"],
                         datasets: [{
-                            label: '# of Votes',
-                            data: [12, 19, 3, 5, 2, 3],
+                            label: 'Bills',
+                            data: [12, 19],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(54, 162, 235, 0.2)'
                             ],
                             borderColor: [
                                 'rgba(255,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                'rgba(54, 162, 235, 1)'
                             ],
                             borderWidth: 1
                         }]
@@ -55,6 +58,8 @@ class Bills extends Component {
                         }
                     }
                 });
+        }
+        
         return (
             <div>
                 <h1 id="bills-title">View Bills!</h1>
