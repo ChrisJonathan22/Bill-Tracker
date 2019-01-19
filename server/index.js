@@ -55,5 +55,5 @@ app.post('/add', (req, res) => {
     res.json({ message: "Data received!" });
 });
 
-
+// Listen to connections on the current port = 5000.
 app.listen(port, console.log(`The Bill Tracker App is running on port: ${port}`));
