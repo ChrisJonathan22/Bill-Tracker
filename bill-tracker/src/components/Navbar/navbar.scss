@@ -1,0 +1,15 @@
+.navbar {
+    .logo {
+        margin: 0;
+    }
+
+    .nav-link {
+        color: #fff !important;
+
+        &:hover {
+            color: green !important;
+            text-decoration: none;
+        }
+    }
+}
+

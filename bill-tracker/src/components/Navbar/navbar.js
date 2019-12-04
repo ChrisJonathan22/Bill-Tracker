@@ -1,37 +1,31 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import './navbar.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './navbar.scss';
 
-class Navbar extends Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-        return (
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
-                  <a className="navbar-brand"><NavLink exact to = '/'>Logo</NavLink></a>
-                    <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                      <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="navbar-collapse collapse" id="navbarColor01">
-                      <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                          <a className="nav-link"><NavLink exact to = '/'>Home</NavLink><span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link"><NavLink to = '/add'>Add</NavLink></a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link"><NavLink to = '/bills'>Bills</NavLink></a>
-                        </li>
-                      </ul>
-                    </div>
-                </nav>
-            </div>
-        );
-    }
+const Navbar = () => {
+  return (
+      <div>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <p className="logo" data-toggle="collapse" data-target=".navbar-collapse.show"><Link className="navbar-brand" exact to = '/'>Bill Tracker</Link></p>
+              <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="navbar-collapse collapse" id="navbarColor01">
+                <ul className="navbar-nav mr-auto">
+                  <li className="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <Link className="nav-link" exact to = '/'>Home</Link><span className="sr-only">(current)</span>
+                  </li>
+                  <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <Link className="nav-link" to = '/add'>Add</Link>
+                  </li>
+                  <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <Link className="nav-link" to = '/bills'>Bills</Link>
+                  </li>
+                </ul>
+              </div>
+          </nav>
+      </div>
+  );
 }
 
 export default Navbar;
