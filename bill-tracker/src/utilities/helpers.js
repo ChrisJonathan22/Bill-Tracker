@@ -10,7 +10,7 @@ const filterBillAmounts = (bills, billAmounts) => {
     });
 }
 
-export const createGraph = (lastYear, thisYear) => {
+export const createGraph = (lastYear, thisYear, getTotal) => {
     let lastYearAmount = [];
     let thisYearAmount = [];
 
@@ -19,7 +19,10 @@ export const createGraph = (lastYear, thisYear) => {
 
     lastYearAmount = lastYearAmount.reduce(getTotal);
     thisYearAmount = thisYearAmount.reduce(getTotal);
-    
+
+    // Add an if statement which will check the total amount against the budget
+    // If it's over the budget the graph will be red.
+
     let ctx = document.getElementById("myGraph").getContext('2d');
     let myGraph = new Chart(ctx, {
                 type: 'bar',

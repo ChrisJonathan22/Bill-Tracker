@@ -59,7 +59,7 @@ class Bills extends Component {
         this.setState({ thisYear: currentYearList, lastYear: lastYearList}, () => {
             // After the graph's data has been stored, create the graph.
             let { lastYear, thisYear } = this.state;
-            createGraph(lastYear, thisYear);
+            createGraph(lastYear, thisYear, getTotal);
         } );
     }
 
